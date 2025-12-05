@@ -1,4 +1,0 @@
-SHOW DATABASES;
-USE mybudget_now;
-
-SHOW TABLES;
