@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a href="index.php" class="text-indigo-600 font-semibold">Home</a>
                     <a href="incomes.php" class="text-gray-600 hover:text-indigo-600">Incomes</a>
                     <a href="expenses.php" class="text-gray-600 hover:text-indigo-600">Expenses</a>
-                    <a href="dashboard.php" class="text-gray-600 hover:text-indigo-600">Dashboard</a>
+                    <a href="dashbourd.php" class="text-gray-600 hover:text-indigo-600">Dashboard</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a href="index.php" class="block px-3 py-2 rounded-md bg-indigo-50 text-indigo-600">Home</a>
                     <a href="incomes.php" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">Incomes</a>
                     <a href="expenses.php" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">Expenses</a>
-                    <a href="dashboard.php" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">Dashboard</a>
+                    <a href="dashbourd.php" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">Dashboard</a>
                 </div>
             </div>
         </div>
