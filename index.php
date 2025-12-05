@@ -306,6 +306,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </main>
 
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h3 class="text-xl font-bold mb-2">MyBudget Now</h3>
+                <p class="text-gray-300 mb-4">Personal Finance Manager</p>
+                <p class="text-gray-400 text-sm">© <?php echo date('Y'); ?> MyBudget. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="main.js"></script>
 </body>
 </html>
