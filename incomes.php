@@ -12,6 +12,9 @@ require_once 'includes/db.php';
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -100,8 +103,7 @@ require_once 'includes/db.php';
                             <th class="px-6 py-3 text-left">Category</th>
                             <th class="px-6 py-3 text-left">Date</th>
                             <th class="px-6 py-3 text-left">Amount</th>
-                            <th class="px-6 py-3 text-left">Edit</th>
-                            <th class="px-6 py-3 text-left">Delete</th>
+                            <th class="px-6 py-3 text-left">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -113,13 +115,32 @@ require_once 'includes/db.php';
                             <td class="px-6 py-4 text-green-600 font-bold">
                                 +$<?php echo number_format($row['amount'], 2); ?>
                             </td>
-                            <td class="px-6 py-4"><i class="fa-regular fa-pen-to-square"></i></td>
-                            <td class="px-6 py-4"><i class="fa-solid fa-trash"></i></td>
+                            <td class="px-6 py-4 flex gap-4">
+                                <!-- Edit -->
+                                <button 
+                                    onclick="openEditModal(
+                                        '<?php echo $row['id']; ?>',
+                                        '<?php echo htmlspecialchars($row['description']); ?>',
+                                        '<?php echo $row['category']; ?>',
+                                        '<?php echo $row['amount']; ?>',
+                                        '<?php echo $row['date']; ?>'
+                                    )"
+                                    class="text-blue-600 hover:text-blue-800">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+
+                                <!-- Delete -->
+                                <button 
+                                    onclick="openDeleteModal('<?php echo $row['id']; ?>')"
+                                    class="text-red-600 hover:text-red-800">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+
                         </tr>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
-                
             </div>
             <?php else: ?>
             <div class="text-center py-8">
@@ -230,9 +251,114 @@ require_once 'includes/db.php';
                         </button>
                     </div>
                 </form>
+                
             </div>
         </div>
     </div>
+
+    <div id="deleteModal" class="fixed inset-0 hidden z-50">
+    <div class="modal-overlay absolute inset-0"></div>
+
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-sm p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">
+                Delete Income
+            </h2>
+
+            <p class="text-gray-600 mb-6">
+                Are you sure you want to delete this income?
+            </p>
+
+            <form method="POST">
+                <!-- YOU will use this later in PHP -->
+                <input type="hidden" name="income_id" id="deleteIncomeId">
+
+                <div class="flex justify-end gap-3">
+                    <button type="button"
+                        onclick="closeDeleteModal()"
+                        class="px-4 py-2 border rounded-lg">
+                        Cancel
+                    </button>
+
+                    <button type="submit"
+                        name="delete_income"
+                        class="px-4 py-2 bg-red-600 text-white rounded-lg">
+                        Delete
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="editModal" class="fixed inset-0 hidden z-50">
+    <div class="modal-overlay absolute inset-0"></div>
+
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-md">
+            <div class="bg-indigo-600 px-6 py-4 text-white flex justify-between">
+                <h3 class="font-semibold">Edit Income</h3>
+                <button onclick="closeEditModal()">✖</button>
+            </div>
+
+            <form method="POST" class="p-6">
+                <!-- YOU will use this later -->
+                <input type="hidden" name="income_id" id="editIncomeId">
+
+                <div class="mb-4">
+                    <label class="block text-sm">Amount</label>
+                    <input type="number" step="0.01"
+                        name="amount"
+                        id="editAmount"
+                        class="w-full border rounded p-2">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm">Description</label>
+                    <input type="text"
+                        name="description"
+                        id="editDescription"
+                        class="w-full border rounded p-2">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm">Category</label>
+                    <select name="category"
+                        id="editCategory"
+                        class="w-full border rounded p-2">
+                        <option>Salary</option>
+                        <option>Freelance</option>
+                        <option>Investment</option>
+                        <option>Bonus</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm">Date</label>
+                    <input type="date"
+                        name="date"
+                        id="editDate"
+                        class="w-full border rounded p-2">
+                </div>
+
+                <div class="flex justify-end gap-3">
+                    <button type="button"
+                        onclick="closeEditModal()"
+                        class="border px-4 py-2 rounded">
+                        Cancel
+                    </button>
+
+                    <button type="submit"
+                        name="update_income"
+                        class="bg-indigo-600 text-white px-4 py-2 rounded">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
         
     <script src="main.js"></script>
 
