@@ -68,3 +68,28 @@
                 setTimeout(() => firstInput.focus(), 100);
             }
         }
+
+        // DELETE
+function openDeleteModal(id) {
+    document.getElementById('deleteIncomeId').value = id;
+    document.getElementById('deleteModal').classList.remove('hidden');
+}
+
+function closeDeleteModal() {
+    document.getElementById('deleteModal').classList.add('hidden');
+}
+
+// EDIT
+function openEditModal(id, desc, cat, amount, date) {
+    document.getElementById('editIncomeId').value = id;
+    document.getElementById('editDescription').value = desc;
+    document.getElementById('editCategory').value = cat;
+    document.getElementById('editAmount').value = amount;
+    document.getElementById('editDate').value = date;
+
+    document.getElementById('editModal').classList.remove('hidden');
+}
+
+function closeEditModal() {
+    document.getElementById('editModal').classList.add('hidden');
+}
