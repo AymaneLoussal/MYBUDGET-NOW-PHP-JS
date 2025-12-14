@@ -100,6 +100,8 @@ require_once 'includes/db.php';
                             <th class="px-6 py-3 text-left">Category</th>
                             <th class="px-6 py-3 text-left">Date</th>
                             <th class="px-6 py-3 text-left">Amount</th>
+                            <th class="px-6 py-3 text-left">Edit</th>
+                            <th class="px-6 py-3 text-left">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -111,10 +113,13 @@ require_once 'includes/db.php';
                             <td class="px-6 py-4 text-green-600 font-bold">
                                 +$<?php echo number_format($row['amount'], 2); ?>
                             </td>
+                            <td class="px-6 py-4"><i class="fa-regular fa-pen-to-square"></i></td>
+                            <td class="px-6 py-4"><i class="fa-solid fa-trash"></i></td>
                         </tr>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
+                
             </div>
             <?php else: ?>
             <div class="text-center py-8">
